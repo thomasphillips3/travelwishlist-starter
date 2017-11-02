@@ -11,6 +11,7 @@ class MainActivity : AppCompatActivity() {
 
   lateinit private var menu: Menu
   lateinit private var staggeredLayoutManager: StaggeredGridLayoutManager
+  lateinit private var adapter: TravelListAdapter
   private var isListView: Boolean = false
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,6 +21,8 @@ class MainActivity : AppCompatActivity() {
     isListView = true
     staggeredLayoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
     list.layoutManager = staggeredLayoutManager
+    adapter = TravelListAdapter(this)
+    list.adapter = adapter
   }
 
   private fun setUpActionBar() {
