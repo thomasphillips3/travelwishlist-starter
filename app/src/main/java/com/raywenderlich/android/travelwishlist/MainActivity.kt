@@ -1,13 +1,16 @@
 package com.raywenderlich.android.travelwishlist
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.Menu
 import android.view.MenuItem
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
   lateinit private var menu: Menu
+  lateinit private var staggeredLayoutManager: StaggeredGridLayoutManager
   private var isListView: Boolean = false
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,6 +18,8 @@ class MainActivity : AppCompatActivity() {
     setContentView(R.layout.activity_main)
 
     isListView = true
+    staggeredLayoutManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
+    list.layoutManager = staggeredLayoutManager
   }
 
   private fun setUpActionBar() {
