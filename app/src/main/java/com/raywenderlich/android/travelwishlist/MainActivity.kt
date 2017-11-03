@@ -64,6 +64,7 @@ class MainActivity : AppCompatActivity() {
   }
 
   private fun showListView() {
+    staggeredLayoutManager.spanCount = 1
     val item = menu.findItem(R.id.action_toggle)
     item.setIcon(R.drawable.ic_action_grid)
     item.title = getString(R.string.show_as_grid)
@@ -71,6 +72,7 @@ class MainActivity : AppCompatActivity() {
   }
 
   private fun showGridView() {
+    staggeredLayoutManager.spanCount = 2
     val item = menu.findItem(R.id.action_toggle)
     item.setIcon(R.drawable.ic_action_list)
     item.title = getString(R.string.show_as_list)
