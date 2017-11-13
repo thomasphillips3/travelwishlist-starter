@@ -1,11 +1,16 @@
 package com.raywenderlich.android.travelwishlist
 
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
+import android.support.v4.app.ActivityOptionsCompat
+import android.support.v4.util.Pair
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.ImageView
+import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -18,7 +23,13 @@ class MainActivity : AppCompatActivity() {
     private val onItemClickListener = object :
             TravelListAdapter.OnItemClickListener {
         override fun onItemClick(view: View, position: Int) {
-            startActivity(DetailActivity.newIntent(this@MainActivity, position))
+            val intent = DetailActivity.newIntent(this@MainActivity, position)
+            val placeImage = view.findViewById<ImageView>(R.id.placeImage)
+            val placeNameHolder = view.findViewById<LinearLayout>(R.id.placeNameHolder)
+            val imagePair = Pair.create(placeImage as View, "tImage")
+            val holderPair = Pair.create(placeNameHolder as View, "tNameHolder")
+            val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this@MainActivity, imagePair, holderPair)
+            ActivityCompat.startActivity(this@MainActivity, intent, options.toBundle())
         }
     }
 

@@ -12,6 +12,7 @@ import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.graphics.Palette
+import android.transition.Transition
 import android.view.View
 import android.view.ViewAnimationUtils
 import android.view.animation.AlphaAnimation
@@ -73,6 +74,16 @@ class DetailActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun windowTransition() {
+        window.enterTransition.addListener(object : Transition.TransitionListener {
+            override fun onTransitionEnd(transition: Transition) {
+                addButton.animate().alpha(1.0f)
+                window.enterTransition.removeListener(this)
+            }
+            override fun onTransitionResume(transition: Transition) { }
+            override fun onTransitionPause(transition: Transition) { }
+            override fun onTransitionCancel(transition: Transition) { }
+            override fun onTransitionStart(transition: Transition) { }
+        })
     }
 
     private fun addToDo(todo: String) {
@@ -160,3 +171,4 @@ class DetailActivity : AppCompatActivity(), View.OnClickListener {
         })
     }
 }
+
